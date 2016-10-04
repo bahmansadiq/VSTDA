@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoList">
+<head>
+  <meta charset="UTF-8">
+  <title>Gulp Demo</title>
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+<!-- endbower -->
+
+<!-- inject:css -->
+<link rel="stylesheet" href="/app/style/styles.css">
+<!-- endinject -->
+</head>
+
+<body class="ng-cloak" ng-controller="mainController">
+
+
+<div class="form-group col-md-offset-1">
+
+<!--panel panel-defult panel-header
+-->
+	<div class="col-md-4">
+		<div class="panel panel-primary">
+			
+			<div class="panel-heading">
+				 <p> Add Todo Item</p>
+		    </div>
+	
+			<div class="panel-body ">
+			   <div >
+				    <label> Text</label>
+				    <input type="text" ng-model="addItem" class="form-control">
+			   </div>	
+			  
+			   <div>
+				    <label >Priority</label>
+				    <select type="select" ng-model="selectedPriority" class="dropdown col-md-4 form-control">
+				    	<option value="1" >High priority</option>
+				    	<option value="2">Medium priority</option>
+				    	<option value="3">Low priority</option>
+
+				     </select>
+			   </div>
+			</div>
+			  	<div class="panel-footer">
+			  
+			 			<button type="button" class="btn btn-primary" ng-click="todoButton()" >Add Todo</button>
+			  	
+	  			</div>
+	  	</div>
+	</div>	
+
+
+
+	<div class="col-md-8">
+		<div class="form-group col-md-12" >
+			<button type="submit" value="" ng-click="priority='taskPriority'" class="btn btn-primary col-md-4">Order by highest priority</button>
+			<button type="submit" value="" ng-click="priority='-
+			taskPriority'" class="btn btn-primary col-md-4">Order by lowest Priority</button>
+			<button type="submit" value="" ng-click="priority='taskName'" class="btn btn-primary col-md-4">Order alphabetically</button>
+		</div>
+		<div class="form-group col-md-12">
+			<table class="table col-md-10">
+				<tr >
+					<th> Name</th>
+					<th> Priority</th>
+				</tr>
+				<tr ng-repeat="item in listAll | orderBy: priority"  ng-class="{'bg-danger' : item.taskPriority==1, 'bg-warning' :item.taskPriority==2, 'bg-info' : item.taskPriority==3}" >
+					<td > {{item.taskName}} </td>
+					<td>{{item.taskPriority}}</td>
+				</tr>
+			</table>
+			<!--
+			<p class="col-md-10 bg-danger"> A high priority item </p>
+			<p class="col-md-10 bg-success"> A low priority item </p>
+			<p class="col-md-10 bg-warning"> A meduim priority item </p>
+			-->
+		</div>
+
+	</div>
+</div>
+
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<!-- endbower -->
+
+<!-- inject:js -->
+<script src="/app/app.js"></script>
+<!-- endinject -->
+</body>
+</html>
